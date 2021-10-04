@@ -16,6 +16,9 @@ public class IcoSphere
     List<Polygon> m_Polygons;
     List<Vector3> m_Vertices;
 
+    float maxTerrainHeight;
+    float minTerrainHeight;
+
     public void Generate(ShapeGenerator shapeGenerator, GameObject meshObj, int nRecursions)
     {
         this.shapeGenerator = shapeGenerator;
@@ -49,6 +52,18 @@ public class IcoSphere
         m_Vertices.Add(shapeGenerator.CalculatePointOnPlanet(new Vector3(-t, 0, -1).normalized));
         m_Vertices.Add(shapeGenerator.CalculatePointOnPlanet(new Vector3(-t, 0, 1).normalized));
 
+        for(int i = 0; i < 12; i ++)
+        {
+            float dist = Vector3.Distance(m_Vertices[i], new Vector3(0,0,0)) - shapeGenerator.GetPlanetRadius();
+            if(dist > maxTerrainHeight)
+            {
+                maxTerrainHeight = dist;
+            }
+            if(dist < minTerrainHeight)
+            {
+                minTerrainHeight = dist;
+            }
+        }
 
         // And here's the formula for the 20 sides,
         // referencing the 12 vertices we just created.
@@ -136,6 +151,16 @@ public class IcoSphere
         Vector3 p1 = m_Vertices[indexA];
         Vector3 p2 = m_Vertices[indexB];
         Vector3 middle = shapeGenerator.CalculatePointOnPlanet(Vector3.Lerp(p1, p2, 0.5f).normalized);
+        float dist = Vector3.Distance(middle, new Vector3(0,0,0)) - shapeGenerator.GetPlanetRadius();
+            if(dist > maxTerrainHeight)
+            {
+                maxTerrainHeight = dist;
+            }
+            if(dist < minTerrainHeight)
+            {
+                minTerrainHeight = dist;
+            }
+
 
         ret = m_Vertices.Count;
         m_Vertices.Add(middle);
@@ -151,7 +176,11 @@ public class IcoSphere
     {
         
         MeshRenderer surfaceRenderer = meshObject.GetComponent<MeshRenderer>();
-        surfaceRenderer.material = new Material(Shader.Find("Standard"));
+        surfaceRenderer.material = new Material(Shader.Find("Custom/PlanetShaderV2"));
+        surfaceRenderer.sharedMaterial.SetFloat("_PlanetRadius", shapeGenerator.GetPlanetRadius());
+        surfaceRenderer.sharedMaterial.SetFloat("_MaxTerrainDist", maxTerrainHeight);
+        surfaceRenderer.sharedMaterial.SetFloat("_MinTerrainDist", minTerrainHeight);
+        surfaceRenderer.sharedMaterial.SetVector("_PlanetCentre", meshObject.transform.position);
 
         Mesh terrainMesh = new Mesh();
         terrainMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
@@ -162,11 +191,7 @@ public class IcoSphere
 
         Vector3[] vertices = new Vector3[vertexCount];
         Vector3[] normals  = new Vector3[vertexCount];
-        Color32[] colors   = new Color32[vertexCount];
-
-        Color32 green = new Color32(20,  255, 30, 255);
-        Color32 brown = new Color32(220, 150, 70, 255);
-
+        
         for (int i = 0; i < m_Polygons.Count; i++)
         {
             var poly = m_Polygons[i];
@@ -179,12 +204,6 @@ public class IcoSphere
             vertices[i * 3 + 1] = m_Vertices[poly.m_Vertices[1]];
             vertices[i * 3 + 2] = m_Vertices[poly.m_Vertices[2]];
 
-            Color32 polyColor = Color32.Lerp(green, brown, Random.Range(0.0f, 1.0f)); 
-
-            colors[i * 3 + 0] = polyColor;
-            colors[i * 3 + 1] = polyColor;
-            colors[i * 3 + 2] = polyColor;
-
             normals[i * 3 + 0] = m_Vertices[poly.m_Vertices[0]];
             normals[i * 3 + 1] = m_Vertices[poly.m_Vertices[1]];
             normals[i * 3 + 2] = m_Vertices[poly.m_Vertices[2]];
@@ -192,7 +211,6 @@ public class IcoSphere
 
         terrainMesh.vertices = vertices;
         terrainMesh.normals  = normals;
-        terrainMesh.colors32 = colors;
 
         terrainMesh.SetTriangles(indices, 0);
 

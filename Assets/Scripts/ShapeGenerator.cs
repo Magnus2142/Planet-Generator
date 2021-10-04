@@ -17,7 +17,6 @@ public class ShapeGenerator
         }
     }
 
-    
 
     /**
     *   Here we take in the points (Vector3 coordinates) that forms
@@ -51,5 +50,10 @@ public class ShapeGenerator
         }
 
         return pointOnUnitSphere * shapeSettings.radius * (1 + elevation);
+    }
+
+    public float GetPlanetRadius()
+    {
+        return this.shapeSettings.radius;
     }
 }
