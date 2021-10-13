@@ -11,6 +11,7 @@ using UnityEngine;
 
 public class IcoSphere
 {
+    /*
 
     ShapeGenerator shapeGenerator;
     List<Polygon> m_Polygons;
@@ -176,7 +177,6 @@ public class IcoSphere
     {
         
         MeshRenderer surfaceRenderer = meshObject.GetComponent<MeshRenderer>();
-        surfaceRenderer.material = new Material(Shader.Find("Custom/PlanetShaderV2"));
         surfaceRenderer.sharedMaterial.SetFloat("_PlanetRadius", shapeGenerator.GetPlanetRadius());
         surfaceRenderer.sharedMaterial.SetFloat("_MaxTerrainDist", maxTerrainHeight);
         surfaceRenderer.sharedMaterial.SetFloat("_MinTerrainDist", minTerrainHeight);
@@ -216,5 +216,5 @@ public class IcoSphere
 
         MeshFilter terrainFilter = meshObject.GetComponent<MeshFilter>();
         terrainFilter.mesh = terrainMesh;
-    }
+    }*/
 }

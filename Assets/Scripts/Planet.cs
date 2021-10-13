@@ -7,8 +7,8 @@ public class Planet : MonoBehaviour
 {
 
     // Controls how much detail we want on our planet
-    [Range(1, 7)]
-    public int recursions = 3;
+    [Range(1, 256)]
+    public int resolution = 90;
 
     /**
     *   Settings classes so we can easily 
@@ -67,9 +67,12 @@ public class Planet : MonoBehaviour
             meshObj.transform.parent = transform;
         }
 
-        IcoSphere icoSphere = new IcoSphere();
-        icoSphere.Generate(shapeGenerator, meshObj, recursions);
-        print("Vertices amount: " + meshObj.GetComponent<MeshFilter>().sharedMesh.vertexCount);
+        meshObj.GetComponent<MeshRenderer>().sharedMaterial = colorSettings.planetMaterial;
+
+        //IcoSphere icoSphere = new IcoSphere();
+        //icoSphere.Generate(shapeGenerator, meshObj, recursions);
+        CubeSphere cubeSphere = new CubeSphere();
+        cubeSphere.Generate(shapeGenerator, meshObj, resolution);
     }
 
     /**

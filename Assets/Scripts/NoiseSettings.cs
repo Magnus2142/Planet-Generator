@@ -7,23 +7,43 @@ using UnityEngine;
 [System.Serializable]
 public class NoiseSettings
 {
-    // Strength of the noise
-    public float noiseStrength = 1;
 
-    // How many layers of noise we want
-    [Range(1, 8)]
-    public int nLayers = 1;
+    public enum FilterType { Basic, Rigid };
+    public FilterType filterType;
 
-    public float baseRoughness = 1;
+    [ConditionalHideAttribute("filterType", 0)]
+    public BasicNoiseSettings basicNoiseSettings;
+    [ConditionalHideAttribute("filterType", 1)]
+    public RigidNoiseSettings rigidNoiseSettings;
 
-    // How sharp edges we want and not
-    public float roughness = 2;
+    [System.Serializable]
+    public class BasicNoiseSettings
+    {
+        // Strength of the noise
+        public float noiseStrength = 1;
 
-    // Determines how fast the amplitude diminish for each layer
-    public float persistence = 0.5f;
+        // How many layers of noise we want
+        [Range(1, 8)]
+        public int nLayers = 1;
 
-    // Controls where the centre of the noise is
-    public Vector3 centre;
+        public float baseRoughness = 1;
 
-    public float minValue;
+
+        public float roughness = 2;
+
+        // Determines how fast the amplitude diminish for each layer
+        public float persistence = 0.5f;
+
+        // Controls where the centre of the noise is
+        public Vector3 centre;
+
+        public float minValue;
+    }
+
+    [System.Serializable]
+    public class RigidNoiseSettings : BasicNoiseSettings
+    {
+        public float weightMultiplier = 0.8f;
+
+    }
 }

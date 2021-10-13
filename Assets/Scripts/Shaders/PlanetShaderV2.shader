@@ -5,10 +5,10 @@ Shader "Custom/PlanetShaderV2"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        _ColorTop ("Top Color", Color) = (1,1,1,1)
-        _ColorMid ("Mid Color", Color) = (1,1,1,1)
-        _ColorBot ("Bot Color", Color) = (1,1,1,1)
-        _Middle ("Middle", Range(0.001, 0.999)) = 1
+        _ColorTop ("Top Color", Color) = (1, 1, 1, 1)
+        _ColorMid ("Mid Color", Color) = (1, 1, 1, 1)
+        _ColorBot ("Bot Color", Color) = (1, 1, 1, 1)
+        _Middle ("Middle", Range(0.001, 0.999)) = 0.240
         _PlanetRadius("Planet Radius", Float) = 1
         _PlanetCentre("Planet Centre", Vector) = (0, 0, 0)
         _MaxTerrainDist("Max dist", Float) = 1
