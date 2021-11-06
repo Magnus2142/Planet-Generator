@@ -36,19 +36,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseMap:
-        m_Texture: {fileID: 2800000, guid: 8936acee5b8424620aed048c0fa9e51b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8794927f157286c54b4412c149f783b4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseMap2:
-        m_Texture: {fileID: 2800000, guid: ba73a207c8eb853b2a1181595874d7fc, type: 3}
+        m_Texture: {fileID: 2800000, guid: f92e07a57f9460ae0adab7ccaafe753b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseMap3:
-        m_Texture: {fileID: 2800000, guid: c38c7fdc1303dc3cb88179afcf7af9dc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0e8b8c9653e202efa8396b86167430f4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DiffuseMap4:
-        m_Texture: {fileID: 2800000, guid: b502a5eb913ccb41582dda65b2f3d366, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7b0a0f9cc1ea760cf8b3e53d9616ac78, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DiffuseMap5:
+        m_Texture: {fileID: 2800000, guid: 5e2f3a6d3d58b3c0ca36b9d79604cf58, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -63,11 +67,39 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 38a46ba93195bb1a0b4ccf28fd2c7aea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap2:
+        m_Texture: {fileID: 2800000, guid: 5478eee6e923f76bc9f9877a6ae1e5ba, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap3:
+        m_Texture: {fileID: 2800000, guid: 6cd9ccd5a706ae2dcb13bbe30f6d28d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap4:
+        m_Texture: {fileID: 2800000, guid: f3c937bc30cd9963c991b341b93fe20c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap5:
+        m_Texture: {fileID: 2800000, guid: 9eeb10c47afb4cc909d20ea3d2dd87d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TestingMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TestingNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -79,18 +111,20 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.932
     - _GlossyReflections: 1
-    - _LowerMiddleValue: 0.09
-    - _MaxTerrainDist: 0.29840994
+    - _LowerBlendRange: 0.03
+    - _LowerMiddleValue: 0.3
+    - _MaxTerrainDist: 0.79205465
     - _Metallic: 0
-    - _Middle: 0.184
+    - _Middle: 0.29
+    - _MiddleBlendRange: 0.03
     - _MiddleBot: 0.001
     - _MiddleTop: 0.6
-    - _MiddleValue: 0.15
+    - _MiddleValue: 0.204
     - _MinTerrainDist: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PlanetRadius: 2
+    - _PlanetRadius: 4
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -98,6 +132,7 @@ Material:
     - _TriplanarBlendSharpness: 1
     - _UVSec: 0
     - _UpperMiddleValue: 0.34
+    - _UpperValue: 0.541
     - _ZWrite: 1
     - _texScale: 1
     m_Colors:
@@ -108,6 +143,6 @@ Material:
     - _ColorMidTop: {r: 0.14274964, g: 0.4716981, b: 0.09567462, a: 1}
     - _ColorTop: {r: 0.79475206, g: 0.76561946, b: 0.8773585, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OceanColor: {r: 0.07277622, g: 0.046057317, b: 0.21698111, a: 1}
+    - _OceanColor: {r: 0.26209745, g: 0.21782662, b: 0.5188679, a: 1}
     - _PlanetCentre: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

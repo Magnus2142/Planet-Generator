@@ -14,11 +14,13 @@ public class CubeSphere
 	private Vector3[] normals;
 
     float maxTerrainHeight;
-    float minTerrainHeight;
+    float minTerrainHeight = 100f;
+
+	Vector3 minVertex;
 
 	Vector3 planetCentre;
 
-	public void Generate (ShapeGenerator shapeGenerator, GameObject meshObj, int resolution) 
+	public void Generate (ShapeGenerator shapeGenerator, GameObject meshObj, int resolution, float oceanLevel) 
     {
         this.shapeGenerator = shapeGenerator;
         this.gridSize = resolution;
@@ -31,15 +33,15 @@ public class CubeSphere
 
         CreateVertices();
         CreateTriangles();
-		Material mat = new Material(Shader.Find("Custom/PlanetShaderV3"));
+		Material mat = new Material(Shader.Find("Custom/PlanetShaderDesert"));
 		meshRenderer.sharedMaterial.SetFloat("_PlanetRadius", shapeGenerator.GetPlanetRadius());
         meshRenderer.sharedMaterial.SetFloat("_MaxTerrainDist", maxTerrainHeight);
         meshRenderer.sharedMaterial.SetFloat("_MinTerrainDist", minTerrainHeight);
         meshRenderer.sharedMaterial.SetVector("_PlanetCentre", planetCentre);
+		meshRenderer.sharedMaterial.SetFloat("_LowerMiddleValue", oceanLevel);
 		meshRenderer.sharedMaterials[0] = mat;
 		meshRenderer.sharedMaterials[1] = mat;
 		meshRenderer.sharedMaterials[2] = mat;
-
 	}
 
     private void CreateVertices()
@@ -199,6 +201,7 @@ public class CubeSphere
         if(dist < minTerrainHeight)
         {
             minTerrainHeight = dist;
+			minVertex = vertices[i];
         }
     
 	}

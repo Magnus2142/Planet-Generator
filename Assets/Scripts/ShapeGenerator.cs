@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class ShapeGenerator
@@ -48,7 +49,6 @@ public class ShapeGenerator
                 elevation += noiseFilters[i].Evaluate(pointOnUnitSphere) * mask; 
             }
         }
-
         return pointOnUnitSphere * shapeSettings.radius * (1 + elevation);
     }
 

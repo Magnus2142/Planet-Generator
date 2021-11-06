@@ -17,11 +17,17 @@ public class Planet : MonoBehaviour
     public ShapeSettings shapeSettings;
     public ColorSettings colorSettings;
 
+    public float oceanLevel;
+
     public ShapeGenerator shapeGenerator;
 
     // Planet mesh object
     [SerializeField, HideInInspector]
     GameObject meshObj;
+
+    // Ocean mesh object
+    [SerializeField, HideInInspector]
+    GameObject meshOcean;
 
     /**
     *   Calls all the generate methods to create the planet
@@ -67,12 +73,19 @@ public class Planet : MonoBehaviour
             meshObj.transform.parent = transform;
         }
 
+        if(meshOcean == null){
+            meshOcean = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        }
+
+
+        float size = shapeGenerator.GetPlanetRadius() * 2;
+        meshOcean.transform.localScale = new Vector3(size+oceanLevel, size+oceanLevel, size+oceanLevel);
         meshObj.GetComponent<MeshRenderer>().sharedMaterial = colorSettings.planetMaterial;
 
         //IcoSphere icoSphere = new IcoSphere();
         //icoSphere.Generate(shapeGenerator, meshObj, recursions);
         CubeSphere cubeSphere = new CubeSphere();
-        cubeSphere.Generate(shapeGenerator, meshObj, resolution);
+        cubeSphere.Generate(shapeGenerator, meshObj, resolution, oceanLevel);        
     }
 
     /**
